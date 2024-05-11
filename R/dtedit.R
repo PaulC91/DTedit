@@ -81,44 +81,42 @@
 #' @param datatable.options options passed to \code{\link{DT::renderDataTable}}.
 #'        See \link{https://rstudio.github.io/DT/options.html} for more information.
 #' @export
-dtedit <- function(
-    input,
-    output,
-    name,
-    thedata,
-    id,
-    view.cols = names(thedata),
-    edit.cols = names(thedata),
-    edit.label.cols = edit.cols,
-    input.types,
-    input.choices = NULL,
-    selectize = TRUE,
-    modal.size = "m",
-    text.width = "100%",
-    textarea.width = "570px",
-    textarea.height = "200px",
-    date.width = "100px",
-    numeric.width = "100px",
-    select.width = "100%",
-    defaultPageLength = 10,
-    title.delete = "Delete",
-    title.edit = "Edit",
-    title.add = "New",
-    label.delete = "Delete",
-    label.edit = "Edit",
-    label.add = "New",
-    label.copy = "Copy",
-    show.delete = TRUE,
-    show.update = TRUE,
-    show.insert = TRUE,
-    show.copy = TRUE,
-    callback.delete = function(data, row) { },
-    callback.update = function(data, olddata, row) { },
-    callback.insert = function(data, row) { },
-    click.time.threshold = 2,
-    # in seconds
-    datatable.options = list(pageLength = defaultPageLength)
-) {
+dtedit <- function(input,
+                   output,
+                   name,
+                   thedata,
+                   id,
+                   view.cols = names(thedata),
+                   edit.cols = names(thedata),
+                   edit.label.cols = edit.cols,
+                   input.types,
+                   input.choices = NULL,
+                   selectize = TRUE,
+                   modal.size = "m",
+                   text.width = "100%",
+                   textarea.width = "570px",
+                   textarea.height = "200px",
+                   date.width = "100px",
+                   numeric.width = "100px",
+                   select.width = "100%",
+                   defaultPageLength = 10,
+                   title.delete = "Delete",
+                   title.edit = "Edit",
+                   title.add = "New",
+                   label.delete = "Delete",
+                   label.edit = "Edit",
+                   label.add = "New",
+                   label.copy = "Copy",
+                   show.delete = TRUE,
+                   show.update = TRUE,
+                   show.insert = TRUE,
+                   show.copy = TRUE,
+                   callback.delete = function(data, row) { },
+                   callback.update = function(data, olddata, row) { },
+                   callback.insert = function(data, row) { },
+                   click.time.threshold = 2,
+                   # in seconds
+                   datatable.options = list(pageLength = defaultPageLength)) {
   # Some basic parameter checking
   if (!is.data.frame(thedata) | ncol(thedata) < 1) {
     stop("Must provide a data frame with at least one column.")
@@ -528,14 +526,14 @@ dtedit <- function(
       if (show.copy) {
         shiny::actionButton(paste0(id, name, "_copy"), label.copy)
       },
-      shiny::br(), 
-			shiny::br(), 
-			DT::dataTableOutput(paste0(id, DataTableName))
+      shiny::br(),
+      shiny::br(),
+      DT::dataTableOutput(paste0(id, DataTableName))
     )
   })
 
-	# return edited data
+  # return edited data
   return(
-  	reactive(result$thedata)
-	)
+    reactive(result$thedata)
+  )
 }

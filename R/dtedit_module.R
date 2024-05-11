@@ -22,13 +22,13 @@ dtedit_server <- function(id, ...) {
   shiny::moduleServer(
     id,
     function(input, output, session) {
-			return(dtedit(
-				input = input,
-				output = output,
-				name = id,
-				id = id,
-				...
-			))
+      return(dtedit(
+        input = input,
+        output = output,
+        name = id,
+        id = id,
+        ...
+      ))
     }
   )
 }
